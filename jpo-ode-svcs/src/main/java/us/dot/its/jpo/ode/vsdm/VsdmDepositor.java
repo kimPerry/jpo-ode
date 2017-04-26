@@ -1,6 +1,5 @@
 package us.dot.its.jpo.ode.vsdm;
 
-//import gov.usdot.asn1.generated.j2735.J2735;
 import us.dot.its.jpo.ode.j2735.J2735;
 import us.dot.its.jpo.ode.j2735.dsrc.Acceleration;
 import us.dot.its.jpo.ode.j2735.dsrc.AccelerationSet4Way;
