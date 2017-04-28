@@ -9,7 +9,7 @@ public class VsdmReceiverTest {
 
 	@Test @Ignore
 	public void test() {
-		VsdmReceiver receiver = new VsdmReceiver();
-		receiver.run();
+//		VsdmReceiver receiver = new VsdmReceiver();
+//		receiver.run();
 	}
 }

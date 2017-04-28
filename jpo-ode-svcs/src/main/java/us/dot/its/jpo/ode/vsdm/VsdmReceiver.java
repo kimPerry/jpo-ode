@@ -15,6 +15,7 @@ public class VsdmReceiver implements Runnable{
 	
 	public VsdmReceiver(){
 		try {
+			logger.info("---------------------- VsdmReceiver Constructor----------------------");
 			socket = new DatagramSocket(4445);
 		} catch (SocketException e) {
 			e.printStackTrace();
@@ -25,7 +26,7 @@ public class VsdmReceiver implements Runnable{
 	public void run() {
 		 while (true) {
 	            try {
-	            	logger.info("Listening on port 4445...");
+	            	logger.info("---------------------- Listening on port 4445...");
 	                byte[] buf = new byte[256];
 
 	                // receive request
@@ -33,7 +34,7 @@ public class VsdmReceiver implements Runnable{
 	                socket.receive(packet);
 	                
 	                String received = new String(packet.getData(), 0, packet.getLength());
-	                logger.info("Packet received: " + received);
+	                logger.info("---------------------- Packet received: " + received);
 
 	                // figure out response
 	                String dString = "Hello from Server";
@@ -41,7 +42,7 @@ public class VsdmReceiver implements Runnable{
 	                buf = dString.getBytes();
 
 			// send the response to the client at "address" and "port"
-	                logger.info("Sending response to the client...");
+	                logger.info(" ---------------------- Sending response to the client...");
 	                InetAddress address = packet.getAddress();
 	                int port = packet.getPort();
 	                packet = new DatagramPacket(buf, buf.length, address, port);
