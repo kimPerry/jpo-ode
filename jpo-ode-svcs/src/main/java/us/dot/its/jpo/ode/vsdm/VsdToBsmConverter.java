@@ -1,10 +1,10 @@
 package us.dot.its.jpo.ode.vsdm;
 
+import java.util.ArrayList;
+
 import us.dot.its.jpo.ode.j2735.dsrc.BasicSafetyMessage;
-import us.dot.its.jpo.ode.j2735.dsrc.VehicleData;
 import us.dot.its.jpo.ode.j2735.semi.VehSitDataMessage;
 import us.dot.its.jpo.ode.j2735.semi.VehSitRecord;
-import us.dot.its.jpo.ode.j2735.semi.VehicleSituationStatus;
 
 public class VsdToBsmConverter {
 	
@@ -12,36 +12,31 @@ public class VsdToBsmConverter {
 		// TODO empty constructor
 	}
 	
-	public BasicSafetyMessage[] convertToBsm(VehSitDataMessage vsdm) {
+	public ArrayList<BasicSafetyMessage> convertToBsm(VehSitDataMessage vsdm) {
+		
+		ArrayList<BasicSafetyMessage> bsms = new ArrayList<>();
 		
 		for (VehSitRecord vsr : vsdm.getBundle().elements) {
+			
 			BasicSafetyMessage bsm = new BasicSafetyMessage();
-			bsm.coreData.setId(vsr.tempID);
+			
+			bsm.coreData.id = vsr.tempID;
+			bsm.coreData._long = vsr.pos._long;
+			bsm.coreData.lat = vsr.pos.lat;
+			bsm.coreData.secMark = vsr.time.second;
+			bsm.coreData.elev = vsr.pos.elevation;
+			bsm.coreData.transmission = vsr.fundamental.speed.transmisson;
+			bsm.coreData.heading = vsr.fundamental.heading;
+			bsm.coreData.angle = vsr.fundamental.steeringAngle;
+			bsm.coreData.accelSet = vsr.fundamental.accelSet;
+			bsm.coreData.brakes = vsr.fundamental.brakes;
+			bsm.coreData.size = vsr.fundamental.vehSize;
+			
+			bsms.add(bsm);
+			
 		}
 		
-//		msgCnt MsgCount,
-//		id TemporaryID,
-//		secMark DSecond,
-//		lat Latitude,
-//		long Longitude,
-//		elev Elevation,
-//		accuracy PositionalAccuracy,
-//		transmission TransmissionState,
-//		speed Speed,
-//		heading Heading,
-//		angle SteeringWheelAngle,
-//		accelSet AccelerationSet4Way,
-//		brakes BrakeSystemStatus,
-//		size VehicleSize
-		
-		
-		
-		
-		
-		
-		
-		
-		return null;
+		return bsms;
 		
 	}
 	
